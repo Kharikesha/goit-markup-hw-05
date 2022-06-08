@@ -61,19 +61,6 @@ svg {
   padding-bottom: 94px;
 }
 
-.is-hidden {
-  position: absolute;
-  white-space: nowrap;
-  width: 1px;
-  height: 1px;
-  overflow: hidden;
-  border: 0;
-  padding: 0;
-  clip: rect(0 0 0 0);
-  clip-path: inset(50%);
-  margin: -1px;
-}
-
 /* ----------------------Хэдэр----------------------- */
 
 .header .container {
@@ -656,17 +643,29 @@ svg {
   width: 100%;
   height: 100%;
   background: rgba(0, 0, 0, 0.2);
+  opacity: 1;
+  transition: opacity 250ms var(--cubic);
+}
+
+.backdrop.is-hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.backdrop.is-hidden .modal {
+  transform: translate(-50%, -50%) scale(0.1);
 }
 
 .modal {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%) scale(1);
   min-width: 528px;
   min-height: 581px;
   border-radius: 4px;
   background-color: #ffffff;
+  transition: transform 250ms var(--cubic);
 }
 
 .modal-btn {
@@ -688,6 +687,7 @@ svg {
   background-color: #ffffff;
   cursor: pointer;
   transition: color 250ms var(--cubic);
+  scale: 1;
 }
 
 .modal-btn:hover,
