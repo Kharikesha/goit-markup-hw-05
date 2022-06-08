@@ -13,6 +13,7 @@
   --secondary-bgc: #f5f4fa;
   --btn-bgc: #2196f3;
   --btn-hover: #188ce8;
+  --cubic: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .test-icon {
@@ -118,6 +119,7 @@ svg {
 }
 
 .header-nav-link {
+  position: relative;
   padding-top: 32px;
   padding-bottom: 32px;
   color: var(--secondary-text-color);
@@ -126,11 +128,23 @@ svg {
   line-height: 1.14;
   letter-spacing: 0.02em;
   text-decoration: none;
+  transition: color 250ms var(--cubic);
 }
 
 .header-nav-link:hover,
 .header-nav-link:focus {
   color: var(--hover-text-color);
+}
+
+.header-nav-link.current::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 4px;
+  bottom: 0;
+  left: 0;
+  border-radius: 2px;
+  background-color: var(--hover-text-color);
 }
 
 .header-icon {
@@ -149,6 +163,7 @@ svg {
   line-height: 1.14;
   letter-spacing: 0.02em;
   text-decoration: none;
+  transition: color 250ms var(--cubic);
 }
 
 .header-contacts:hover,
@@ -195,6 +210,7 @@ svg {
   border: 0;
   cursor: pointer;
   filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+  transition: background-color 250ms var(--cubic);
 }
 
 .hero-btn:hover,
@@ -266,8 +282,30 @@ svg {
   display: flex;
 }
 
+.benefits-item {
+  position: relative;
+}
+
 .benefits-item:not(:first-child) {
   margin-left: 30px;
+}
+
+.benefits-text {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  width: 100%;
+  min-height: 70px;
+  left: 0;
+  bottom: 0;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 1.14;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: #ffffff;
+  background-color: rgba(47, 48, 58, 0.8);
 }
 
 .benefits-item img {
@@ -352,6 +390,7 @@ svg {
   color: #afb1b8;
   text-decoration: none;
   border-radius: 50px;
+  transition: color 250ms var(--cubic), background-color 250ms var(--cubic);
 }
 
 .social-link:hover,
@@ -387,6 +426,7 @@ svg {
   color: #afb1b8;
   border: 1px solid #afb1b8;
   border-radius: 4px;
+  transition: color 250ms var(--cubic), border 250ms var(--cubic);
 }
 
 .clients-link:hover,
@@ -463,6 +503,7 @@ svg {
 .social-link.for-footer {
   color: #ffffff;
   background-color: rgba(255, 255, 255, 0.1);
+  transition: background-color 250ms var(--cubic);
 }
 
 .social-link.for-footer:hover,
@@ -495,6 +536,9 @@ svg {
   border: 0;
   border-radius: 5px;
   cursor: pointer;
+  filter: 0;
+  transition: background-color 250ms var(--cubic), color 250ms var(--cubic),
+    filter 250ms var(--cubic);
 }
 
 .btn.current {
@@ -523,6 +567,8 @@ svg {
   margin-left: 30px;
   margin-top: 30px;
   background: #ffffff;
+  box-shadow: none;
+  transition: box-shadow 250ms var(--cubic);
 }
 
 .card-item a {
@@ -561,4 +607,31 @@ svg {
   font-size: 16px;
   line-height: 1.87;
   letter-spacing: 0.03em;
+}
+
+.card-img {
+  position: relative;
+  overflow: hidden;
+}
+
+.card-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transform: translate(0%, 100%);
+  padding: 63px 24px;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 1.56;
+  letter-spacing: 0.03em;
+  color: #ffffff;
+  background-color: rgba(33, 150, 243, 0.9);
+  transition: transform 250ms var(--cubic);
+}
+
+.card-item:hover .card-overlay,
+.card-item:focus .card-overlay {
+  transform: translate(0%, 0%);
 }
